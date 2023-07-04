@@ -50,10 +50,10 @@ public class Anti4{
             int col=scanner.nextInt();
             if(col<board[row].length){
             makeMove(row,col);
-            char winner =checkWinner();
-            if(winner!=' '){
+            char lost =checkScore();
+            if(lost!=' '){
                 printBoard();
-                System.out.println("Player " + winner + " wins!");
+                System.out.println("Player " + lost + " Lost");
                 break;
             }
             }
@@ -61,5 +61,37 @@ public class Anti4{
         }
         scanner.close();
     }
+    public char checkScore(){
+       //rows
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2] ) {
+                return board[i][0];
+            }
+            if (board[0][i] != ' ' && board[0][i] == board[1][i] && board[1][i] == board[2][i] ) {
+                return board[0][i];
+            }
+        }
+
+        // Check diagonals
+        for(int y=0;y+2<board.length; y++){
+            for(int x=0;x+2<board[y].length;x++){
+                if (board[y][x] != ' ' && board[y][x] == board[y+1][x+1] && board[y+1][x+1] == board[y+2][x+2] ) {
+                return board[y][x];
+            }
+            }
+        }
+         for(int y=board.length-1;y>2; y--){
+            for(int x=0;x+2<board[y].length; x++){
+                if (board[y][x] != ' ' && board[y][x] == board[y-1][x+1] && board[y-1][x+1] == board[y-2][x+2] ) {
+                return board[y][x];
+            }
+            }
+        }
+       
+
+        // No winner yet
+        return ' ';
+    }
+
 
 }
