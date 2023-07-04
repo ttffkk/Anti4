@@ -63,6 +63,16 @@ public class Anti4{
     }
     public char checkScore(){
        //rows
+       char r=checkrow();
+       char d=checkDiag();
+       if(r==d){
+        return r;
+       }
+       else if(r==' '&&d!=' '){return d;}
+       else{return ' ';}
+    }
+    public char checkrow(){
+        //rows
         for (int i = 0; i < board.length; i++) {
             if (board[i][0] != ' ' && board[i][0] == board[i][1] && board[i][1] == board[i][2] ) {
                 return board[i][0];
@@ -71,7 +81,10 @@ public class Anti4{
                 return board[0][i];
             }
         }
-
+        // No winner yet
+        return ' ';
+    }
+    public char checkDiag(){
         // Check diagonals
         for(int y=0;y+2<board.length; y++){
             for(int x=0;x+2<board[y].length;x++){
@@ -87,9 +100,6 @@ public class Anti4{
             }
             }
         }
-       
-
-        // No winner yet
         return ' ';
     }
 
