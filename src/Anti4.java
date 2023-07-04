@@ -38,22 +38,23 @@ public class Anti4{
             System.out.println("invalide move. Try again.");
         }
     }
+    static final String USER="Player ";
     public void play(){
         Scanner scanner = new Scanner(System.in);
         while(true)
         {
             printBoard();
-            System.out.println("Player " + cPlayer + " make your move. Please Enter the row number between 0 and"+board.length);
+            System.out.println(USER + cPlayer + " make your move. Please Enter the row number between 0 and"+board.length);
             int row = scanner.nextInt();
             if(row<board.length){
-            System.out.println("Player " + cPlayer + " make your move. Please Enter the column number between 0 and"+board[row].length);}
+            System.out.println(USER + cPlayer + " make your move. Please Enter the column number between 0 and"+board[row].length);}
             int col=scanner.nextInt();
             if(col<board[row].length){
             makeMove(row,col);
             char lost =checkScore();
             if(lost!=' '){
                 printBoard();
-                System.out.println("Player " + lost + " Lost");
+                System.out.println(USER + lost + " Lost");
                 break;
             }
             }
